@@ -49,6 +49,13 @@ app.use('/api/share', shareRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/export', exportRoutes);
 
+app.get("/", (req, res) => {
+
+  res.json({
+      message: "Finance Flow Server is alive and well!"
+  })
+})
+
 
 
 httpServer.listen(3000, () => {
