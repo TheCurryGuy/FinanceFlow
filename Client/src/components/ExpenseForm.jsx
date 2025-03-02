@@ -41,7 +41,7 @@ export default function ExpenseForm() {
     };
 
     return (
-        <div className="bg-dark text-white p-4 rounded shadow mb-4">
+        <div className="bg-dark text-white p-4 border border-white rounded shadow mb-4">
             <h2 className="mb-4">Add Expense</h2>
              {expenseStatus === 'failed' && expenseError && (
                 <Alert variant="danger">

@@ -30,7 +30,7 @@ export default function FinancialInsights() {
     };
 
     return (
-        <Card bg="dark" text="white">
+        <Card bg="dark" text="white" className="border border-white">
             <Card.Body>
                 <Card.Title as="h2">AI Financial Insights</Card.Title>
                 <BootstrapButton variant="primary" onClick={generateInsights} disabled={isLoading}>

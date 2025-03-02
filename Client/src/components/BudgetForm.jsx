@@ -20,7 +20,7 @@ export default function BudgetForm() {
   };
 
   return (
-    <div className="bg-dark text-white p-4 rounded shadow">
+    <div className="bg-dark text-white p-4 rounded shadow border border-white">
       <h2 className="mb-4">Add Budget</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">

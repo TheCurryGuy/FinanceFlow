@@ -37,7 +37,7 @@ export default function GoalForm() {
     };
 
     return (
-        <div className="bg-dark text-white p-4 rounded shadow">
+        <div className="bg-dark text-white p-4 border border-white rounded shadow">
             <h2 className="mb-4">Add Goal</h2>
              {goalStatus === 'failed' && <p className='text-danger'>Error: {goalError ? goalError.error : 'Failed to add Goal'}</p>}
             <Form onSubmit={handleSubmit(onSubmit)}>

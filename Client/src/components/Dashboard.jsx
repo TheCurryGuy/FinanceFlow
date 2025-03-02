@@ -55,7 +55,7 @@ export default function Dashboard() {
     return (
         <Row className="g-3">
             <Col md={8}>
-                <Card bg="dark" text="white">
+                <Card bg="dark" text="white" className='border border-white'>
                     <Card.Body>
                         <Card.Title>Recent Expenses</Card.Title>
                         <ListGroup bg= "secondary" variant="flush">
@@ -77,7 +77,7 @@ export default function Dashboard() {
                 </Card>
             </Col>
             <Col md={4}>
-                <Card bg="dark" text="white">
+                <Card bg="dark" text="white" className='border border-white'>
                     <Card.Body>
                         <Card.Title>Spending Breakdown</Card.Title>
                         <Doughnut data={chartData} />

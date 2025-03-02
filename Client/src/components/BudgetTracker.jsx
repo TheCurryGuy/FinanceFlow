@@ -47,7 +47,7 @@ export default function BudgetTracker() {
   }
 
   return (
-    <Card bg="dark" text="white" className="mb-4">
+    <Card bg="dark" text="white" className="mb-4 border border-white">
       <Card.Body>
         <div className="d-flex justify-content-between align-items-center mb-3">
           <Card.Title as="h2">Budgets</Card.Title>
