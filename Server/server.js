@@ -49,9 +49,9 @@ app.use('/api/share', shareRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/export', exportRoutes);
 
-const PORT = process.env.PORT || 5000;
 
-httpServer.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+
+httpServer.listen(3000, () => {
+  console.log("Server started on port 3000");
   scheduleRecurringExpenses();
 });
