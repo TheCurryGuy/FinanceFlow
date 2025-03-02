@@ -1,3 +1,4 @@
+// server.js (REVISED)
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -11,37 +12,37 @@ const goalRoutes = require('./routes/goalRoutes');
 const shareRoutes = require('./routes/shareRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const exportRoutes = require('./routes/exportRoutes');
-const {scheduleRecurringExpenses} = require('./cron/recurringExpenses');
+const { scheduleRecurringExpenses } = require('./cron/recurringExpenses');
 
 const app = express();
 
 connectDB();
 app.use(express.json());
 
-app.use(cors({
-  origin: "https://financeflow-tcg.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"], 
-  credentials: true 
-}));
+// --- CORS Configuration (Simplified and Corrected) ---
+const corsOptions = {
+    origin: "https://financeflow-tcg.vercel.app", // Allow your frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    credentials: true, // Allow cookies to be sent
+};
+app.use(cors(corsOptions)); // Apply CORS to ALL routes
+
 const httpServer = createServer(app);
+// --- Socket.IO CORS Configuration (IMPORTANT!) ---
 const io = new Server(httpServer, {
-  cors: {
-    origin: "https://financeflow-tcg.vercel.app",
-    methods: ["GET", "POST"],
-    credentials: true
-  }
+    cors: corsOptions, // *** USE THE SAME OPTIONS ***
 });
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 });
 
 app.use((req, res, next) => {
-  req.io = io;
-  next();
+    req.io = io;
+    next();
 });
 
 app.use('/api/auth', authRoutes);
@@ -53,15 +54,12 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/export', exportRoutes);
 
 app.get("/", (req, res) => {
-
-  res.json({
-      message: "Finance Flow Server is alive and well!"
-  })
-})
-
-
+    res.json({
+        message: "Finance Flow Server is alive and well!"
+    })
+});
 
 httpServer.listen(3000, () => {
-  console.log("Server started on port 3000");
-  scheduleRecurringExpenses();
+    console.log("Server started on port 3000");
+    scheduleRecurringExpenses();
 });
