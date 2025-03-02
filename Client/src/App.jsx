@@ -56,7 +56,10 @@ function App() {
                       <HouseDoor className="me-2" />Dashboard
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/budgets">
-                      <Wallet className="me-2" />Budgets
+                      <Wallet className="me-2" />Budget & Goals
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/reports">
+                      <Wallet className="me-2" />AI Report
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={handleLogout}>
@@ -99,8 +102,9 @@ function App() {
                   <Col xxl={3} lg={4} className="order-lg-1">
                     <div className="d-flex flex-column gap-4">
                       <ExpenseForm />
-                      <BudgetForm />
-                      <GoalForm />
+                      <GoalProgress />
+                      
+                      
                       <div className="d-grid gap-2">
                         <ExportButton type="pdf" />
                         <ExportButton type="csv" />
@@ -113,20 +117,24 @@ function App() {
                       <Dashboard />
                       <Row className="g-4">
                         <Col xl={8}>
-                          <FinancialInsights />
+                          <FinancialInsights/><br/>
+                          <SharedExpenses /><br/>
+                          <BudgetForm />
+                          
                         </Col>
                         <Col xl={4}>
                           <BudgetTracker />
-                          <GoalProgress className="mt-4" />
+                          <GoalForm />
+                          
                         </Col>
                       </Row>
-                      <SharedExpenses />
+                      
                     </div>
                   </Col>
                 </Row>
               } />
 
-              <Route path="/budgets" element={<BudgetTracker />} />
+              <Route path="/budgets" element={<div><BudgetTracker /> <br/> <GoalProgress /></div>} />
               <Route path="/goals" element={<GoalProgress />} />
               <Route path="/reports" element={<FinancialInsights />} />
             </>
