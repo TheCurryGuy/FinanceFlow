@@ -19,13 +19,16 @@ connectDB();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://financeflow-tcg.vercel.app"
+  origin: "https://financeflow-tcg.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  credentials: true 
 }));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: "https://financeflow-tcg.vercel.app",
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
