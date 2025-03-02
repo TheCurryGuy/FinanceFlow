@@ -13,20 +13,15 @@ export default function Dashboard() {
     const dispatch = useDispatch();
     const expenses = useSelector(state => state.expense.expenses);
     const expenseStatus = useSelector(state => state.expense.status);
-
-      // Fetch expenses on mount and when status changes.
   useEffect(() => {
     if (expenseStatus === 'idle') {
       dispatch(fetchExpenses());
     }
   }, [expenseStatus, dispatch]);
 
-  // Listen for Socket.IO updates.
   useEffect(() => {
     if (socket) {
       socket.on('expenseUpdate', (newExpense) => {
-        // The key change: do NOT directly update local state here.
-        // Instead, rely on Redux to update the global state.
         dispatch(fetchExpenses()); // Re-fetch *all* expenses
       });
     }

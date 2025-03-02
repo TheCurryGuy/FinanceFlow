@@ -17,13 +17,13 @@ export default function FinancialInsights() {
         setError(null); // Clear any previous errors
         const token = getAuthToken();
         try {
-            const { data } = await axios.post('http://localhost:3000/api/ai/insights', { expenses }, { // Removed hardcoded URL
+            const { data } = await axios.post('http://localhost:3000/api/ai/insights', { expenses }, { 
                 headers: { Authorization: `Bearer ${token}` }
             });
             setInsights(data.insights);
         } catch (err) {
             setError(err.response?.data?.error || 'Failed to generate insights.'); // Store the error message
-            console.error("Error generating insights:", err); // Log the error for debugging
+            console.error("Error generating insights:", err);
         } finally {
             setIsLoading(false);
         }

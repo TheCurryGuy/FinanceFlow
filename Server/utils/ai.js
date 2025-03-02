@@ -6,7 +6,7 @@ const predictCategory = async (description) => {
       const chatCompletion = await groqClient.chat.completions.create({
           messages: [{
               role: 'system',
-              content: 'You are a helpful assistant that categorizes expenses.  Return only one of these categories: [Food, Transportation, Housing, Entertainment, Healthcare, Education, Other] and your response shoudl be of this form "Expense Name - Category" strictly. no extra words are required to be added'
+              content: 'You are a helpful assistant that categorizes expenses.  Return only one of these categories or if you find the given categories unfit to categorize the itemm then proceed with whats suitable according to your knowledge: [Food, Transportation, Housing, Entertainment, Healthcare, Education] and your response shoudl be of this form "Expense Name - Category" strictly. no extra words are required to be added'
           },
           {
               role: 'user',

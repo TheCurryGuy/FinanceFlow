@@ -15,17 +15,16 @@ const {scheduleRecurringExpenses} = require('./cron/recurringExpenses');
 
 const app = express();
 
-// Connect Database
 connectDB();
-
-// Init Middleware
-app.use(cors());
 app.use(express.json());
 
+app.use(cors({
+  origin: "https://financeflow-tcg.vercel.app"
+}));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // Be more restrictive in production
+    origin: "https://financeflow-tcg.vercel.app",
     methods: ["GET", "POST"]
   }
 });
@@ -37,13 +36,11 @@ io.on('connection', (socket) => {
   });
 });
 
-// Add io to request object
 app.use((req, res, next) => {
   req.io = io;
   next();
 });
 
-// Define Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/budgets', budgetRoutes);
