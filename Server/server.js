@@ -30,8 +30,14 @@ app.use(cors(corsOptions)); // Apply CORS to ALL routes
 const httpServer = createServer(app);
 // --- Socket.IO CORS Configuration (IMPORTANT!) ---
 const io = new Server(httpServer, {
-    cors: corsOptions, // *** USE THE SAME OPTIONS ***
+    cors: {
+        origin: "https://financeflow-tcg.vercel.app",
+        methods: ["GET", "POST"],
+        credentials: true, // Allow credentials for authentication
+        transports: ["websocket", "polling"], // Ensure proper connection
+    }
 });
+
 
 io.on('connection', (socket) => {
     console.log('a user connected');
