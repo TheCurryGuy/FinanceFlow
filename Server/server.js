@@ -33,9 +33,10 @@ const io = new Server(httpServer, {
     cors: {
         origin: "https://financeflow-tcg.vercel.app",
         methods: ["GET", "POST"],
-        credentials: true, // Allow credentials for authentication
-        transports: ["websocket", "polling"], // Ensure proper connection
-    }
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+    },
+    transports: ["websocket", "polling"], // Move it outside cors
 });
 
 

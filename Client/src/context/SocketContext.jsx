@@ -8,18 +8,27 @@ export function SocketProvider({ children }) {
 
   useEffect(() => {
     const newSocket = io("https://financeflow-server.vercel.app", {
-      transports: ["websocket", "polling"], // Ensure stable connection
-      withCredentials: true, // Fix CORS-related issues
-      reconnectionAttempts: 5, // Retry only 5 times
-      reconnectionDelay: 2000, // 2s delay before reconnection attempt
+      withCredentials: true,
+      transports: ["websocket", "polling"], // Ensures it falls back to polling if WS fails
+      reconnectionAttempts: 5, // Prevent infinite loops
+      reconnectionDelay: 2000, // 2s delay before retry
     });
-
+  
+    newSocket.on("connect", () => {
+      console.log("✅ WebSocket Connected:", newSocket.id);
+    });
+  
+    newSocket.on("connect_error", (err) => {
+      console.error("❌ Connection Error:", err.message);
+    });
+  
     setSocket(newSocket);
-
+  
     return () => {
       newSocket.disconnect();
     };
   }, []);
+  
 
   return (
     <SocketContext.Provider value={{ socket }}>
