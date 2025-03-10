@@ -8,7 +8,7 @@ export default function ExportButton({ type }) { // 'pdf' or 'csv'
   const handleExport = async () => {
     const token = getAuthToken();
     try {
-      const response = await axios.get(`https://financeflow-server.vercel.app/api/export/${type}`, { // Removed hardcoded URL
+      const response = await axios.get(`http://localhost:3000/api/export/${type}`, { // Removed hardcoded URL
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob',
       });

@@ -17,7 +17,7 @@ export default function FinancialInsights() {
         setError(null); // Clear any previous errors
         const token = getAuthToken();
         try {
-            const { data } = await axios.post('https://financeflow-server.vercel.app/api/ai/insights', { expenses }, { 
+            const { data } = await axios.post('http://localhost:3000/api/ai/insights', { expenses }, { 
                 headers: { Authorization: `Bearer ${token}` }
             });
             setInsights(data.insights);
