@@ -8,7 +8,6 @@ FinanceFlow is a personal finance management application that helps users track 
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -85,15 +84,6 @@ FinanceFlow/
 2. Add income and expense transactions.
 3. Visualize financial insights through the dashboard.
 4. Set budget goals and track savings progress.
-
-## API Endpoints
-| Method | Endpoint         | Description                |
-|--------|----------------|----------------------------|
-| POST   | /api/auth/login | User login                 |
-| POST   | /api/auth/register | User registration         |
-| GET    | /api/transactions | Get all transactions      |
-| POST   | /api/transactions | Add a transaction         |
-| DELETE | /api/transactions/:id | Delete a transaction |
 
 ## Contributing
 1. Fork the repository.
